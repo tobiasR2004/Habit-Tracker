@@ -1,0 +1,78 @@
+/* Estilo general del calendario */
+.custom-calendar {
+  width: 100%;
+  max-width: 90vw;           
+  height: auto;               /* o fijá una altura si querés */
+  font-size: 1.25rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de navegación */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  background: transparent;
+  color: #2563eb; /* Tailwind blue-600 */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #dbeafe; /* Tailwind blue-100 */
+}
+
+
+/* Día seleccionado */
+.react-calendar__tile--active {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+}
+
+/* Días */
+.react-calendar__tile {
+  padding: 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.15s;
+}
+
+/* Día actual */
+.react-calendar__tile--now {
+  background-color: #3a000045;
+  font-weight: 600;
+  border-radius: 0.25rem;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: #dbeafe; /* blue-100 */
+  color: #1e3a8a;            /* blue-900 */
+}
+
+/* Nombres de los días de la semana */
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  color: #6b7280;  /* gray-500 */
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Contenedor de los días (grid de 7 columnas) */
+.react-calendar__month-view__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.react-calendar__tile {
+  width: 100%;
+}
