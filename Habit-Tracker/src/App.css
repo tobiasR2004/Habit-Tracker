@@ -1,9 +1,46 @@
+@import "tailwindcss/preflight";
 @import "tailwindcss";
+@import "tailwindcss/utilities";
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
 }
+
+/*ESTILOS PARA CALENDARIO*/
+
+/* Botón de hoy */
+.rbc-btn-group button {
+  @apply px-3 py-1 text-sm font-medium rounded-md hover:bg-blue-800;
+}
+
+/* Toolbar (barra de navegación superior) */
+.rbc-toolbar {
+  @apply flex flex-col md:flex-row justify-between items-center gap-4 mb-4;
+}
+
+/* Encabezado del calendario (dom, lun, mar...) */
+.rbc-header {
+  @apply text-center text-sm font-semibold text-gray-600 uppercase;
+}
+
+/* Celdas del calendario */
+.rbc-date-cell {
+  @apply text-xs p-1 text-gray-700 bg-[#ffffff]
+}
+
+/* Día activo (hoy) */
+.rbc-today {
+  background-color: #eff6ff; /* Tailwind's bg-blue-50 */
+}
+
+/* Evento */
+.rbc-event {
+  @apply bg-blue-500 text-white text-xs px-2 py-1 rounded shadow;
+}
+
+
 
 @layer utilities {
   .font-kanit {
