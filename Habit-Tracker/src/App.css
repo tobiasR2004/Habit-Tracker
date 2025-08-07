@@ -1,6 +1,6 @@
-@import "tailwindcss/preflight";
+
 @import "tailwindcss";
-@import "tailwindcss/utilities";
+
 
 #root {
   max-width: 1280px;
@@ -12,7 +12,7 @@
 
 /* Botón de hoy */
 .rbc-btn-group button {
-  @apply px-3 py-1 text-sm font-medium rounded-md hover:bg-blue-800;
+  @apply px-3 py-1 text-sm font-medium rounded-md hover:bg-red-800;
 }
 
 /* Toolbar (barra de navegación superior) */
@@ -32,7 +32,7 @@
 
 /* Día activo (hoy) */
 .rbc-today {
-  background-color: #eff6ff; /* Tailwind's bg-blue-50 */
+   background-color: #eff6ff; /* Tailwind's bg-blue-50 */
 }
 
 /* Evento */
