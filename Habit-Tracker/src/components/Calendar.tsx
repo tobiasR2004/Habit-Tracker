@@ -36,7 +36,7 @@ export const CalendarPage = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        defaultView="month"
+        defaultView="day"
         view={view}
         onView={(newView) => setView(newView)}
         date={date}

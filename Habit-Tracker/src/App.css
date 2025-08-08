@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 
 
@@ -9,47 +8,91 @@
 }
 
 /*ESTILOS PARA CALENDARIO*/
-
-/* Botón de hoy */
-.rbc-btn-group button {
-  @apply px-3 py-1 text-sm font-medium rounded-md hover:bg-red-800;
+.rbc-calendar {
+  @apply rounded-2xl;
 }
 
-/* Toolbar (barra de navegación superior) */
-.rbc-toolbar {
-  @apply flex flex-col md:flex-row justify-between items-center gap-4 mb-4;
-}
-
-/* Encabezado del calendario (dom, lun, mar...) */
 .rbc-header {
   @apply text-center text-sm font-semibold text-gray-600 uppercase;
 }
 
-/* Celdas del calendario */
-.rbc-date-cell {
-  @apply text-xs p-1 text-gray-700 bg-[#ffffff]
+
+.rbc-day-bg {
+  @apply bg-[#0a0a0a81];
 }
 
-/* Día activo (hoy) */
-.rbc-today {
-   background-color: #eff6ff; /* Tailwind's bg-blue-50 */
+.rbc-calendar button {
+  @apply rounded-2xl py-1 px-1 hover:bg-[#ffffff2e];
 }
 
-/* Evento */
-.rbc-event {
-  @apply bg-blue-500 text-white text-xs px-2 py-1 rounded shadow;
+.rbc-month-view {
+  @apply bg-[#0a0a0a81] rounded-2xl border-none;
 }
 
+.rbc-toolbar button {
+  @apply border-1 text-white font-bold py-2 px-10 rounded hover:bg-[#ffffff2e];
+}
 
+/*Month Styles*/
+
+.rbc-month-view .rbc-day-bg {
+  @apply border-[#212121dd];
+}
+
+/* Quitar borde del header (Lun, Mar, etc.) */
+.rbc-month-view .rbc-header {
+  @apply border-[#646464dd];
+}
+
+.rbc-month-view .rbc-month-row {
+ @apply border-[#212121dd];
+}
+
+/* También de las filas internas */
+.rbc-month-view .rbc-row {
+  @apply border-[#212121dd];
+}
+
+/* Day Styles */
+
+/* Encabezado (nombres de días y columna de horas) */
+  .rbc-time-header {
+    @apply border-[#212121dd];
+  }
+
+  /* Cada celda de encabezado de día */
+  .rbc-time-header-cell {
+    @apply border-[#212121dd] bg-[#0a0a0a81];
+  }
+
+  /* Columnas de cada día */
+  .rbc-time-column {
+    @apply  bg-[#0a0a0a81] border-[#212121dd];
+  }
+
+  /* Grupos de slots de hora (líneas horizontales) */
+  .rbc-timeslot-group {
+    @apply border-[#212121dd];
+  }
+
+  /* Quitar/modificar borde del área de contenido */
+  .rbc-time-content {
+    @apply border-[#212121dd];
+  }
+
+
+/*dias fuera del mes actual*/
 
 @layer utilities {
   .font-kanit {
     font-family: 'Kanit', sans-serif;
   }
+
   .font-kanit-medium {
     font-family: 'Kanit', sans-serif;
     font-weight: 500;
   }
+
   .font-kanit-bold {
     font-family: 'Kanit', sans-serif;
     font-weight: 700;
@@ -60,6 +103,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
