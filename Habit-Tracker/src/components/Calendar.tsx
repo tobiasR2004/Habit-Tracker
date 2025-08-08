@@ -19,8 +19,8 @@ const localizer = dateFnsLocalizer({
 const events = [
   {
     title: "Evento de prueba",
-    start: new Date(2025, 7, 7, 10, 0),
-    end: new Date(2025, 7, 7, 12, 0),
+    start: new Date(2025, 7, 10, 10, 0),
+    end: new Date(2025, 7, 10, 12, 0),
     allDay: false,
   },
 ];
