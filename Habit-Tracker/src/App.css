@@ -34,7 +34,7 @@
 /*Button Styles*/
 
 .rbc-toolbar button {
-  @apply border-1 text-white font-bold py-2 px-10 rounded hover:bg-[#ffffff2e] outline-none shadow-none;
+  @apply border-1 text-white border-gray-900 font-bold py-2 px-10 rounded hover:bg-[#ffffff2e] outline-none shadow-none;
 }
 
 .rbc-toolbar button:active {
@@ -127,7 +127,25 @@
   background-color: #0a0a0a81 !important;
 }
 
-/*dias fuera del mes actual*/
+/*AGENDA*/
+.rbc-agenda-table {
+  background-color: #0a0a0a81 !important;
+  border: 1px solid #2f2f2fe7 !important;
+  color: #777777;  
+}
+
+.rbc-agenda-table tr {
+  background-color: #0a0a0a81 !important;
+  border: 1px solid #2f2f2fe7 !important;
+  
+}
+.rbc-agenda-event-cell {
+  border: 1px solid #2f2f2fe7 !important;
+
+}
+.rbc-agenda-date-cell {
+  border: 1px solid #2f2f2fe7 !important;
+}
 
 @layer utilities {
   .font-kanit {
