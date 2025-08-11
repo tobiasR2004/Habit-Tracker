@@ -42,7 +42,7 @@ export const CalendarPage = () => {
 
   const stateStyle = (event: any) => {
     const style = {
-      background: event.habitState ? "green" : "red",
+      background: event.habitState ? "#37ff0033" : "#ff000033",
     };
     return { style };
   };
@@ -58,7 +58,7 @@ export const CalendarPage = () => {
   const CustomAgendaEvent = ({ event }) => (
     <div style={{ cursor: "pointer" }}>
       {event.title}{" "}
-      {event.habitState && <span style={{ color: "green" }}>✓</span>}
+      {event.habitState && <span style={{ color: "#37ff0033" }}>✓</span>}
     </div>
   );
 
@@ -75,7 +75,7 @@ export const CalendarPage = () => {
         date={date}
         onNavigate={(newDate) => setDate(newDate)}
         views={["month", "week", "day", "agenda"]}
-        style={{ height: "90vh" }}
+        style={{ height: "76vh" }}
         eventPropGetter={stateStyle}
         onSelectEvent={handleSelectEvent}
         components={{ agenda: { event: CustomAgendaEvent } }}
