@@ -8,7 +8,6 @@ const locales = {
   es: es,
 };
 
-
 const localizer = dateFnsLocalizer({
   format,
   parse,
@@ -16,7 +15,6 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
-
 
 export const CalendarPage = () => {
   const [view, setView] = useState<View>("month");
@@ -26,32 +24,43 @@ export const CalendarPage = () => {
   const [events, setEvents] = useState([
     {
       id: 1,
-    title: "Evento de prueba",
-    start: new Date(2025, 7, 15, 10, 0),
-    end: new Date(2025, 7, 15, 12, 0),
-    allDay: false,
-    habitState: false,
-  },
-  {
-    id: 2,
-    title: "Evento de prueba 2",
-    start: new Date(2025, 7, 16, 14, 0),
-    end: new Date(2025, 7, 16, 16, 0),
-    allDay: false,
-    habitState: true,
-  },
-]);
+      title: "Evento de prueba",
+      start: new Date(2025, 7, 15, 10, 0),
+      end: new Date(2025, 7, 15, 12, 0),
+      allDay: false,
+      habitState: false,
+    },
+    {
+      id: 2,
+      title: "Evento de prueba 2",
+      start: new Date(2025, 7, 16, 14, 0),
+      end: new Date(2025, 7, 16, 16, 0),
+      allDay: false,
+      habitState: true,
+    },
+  ]);
 
-const stateStyle = (event: any) => {
-  const  style = {
-    background: event.habitState ? "green" : "red"};
+  const stateStyle = (event: any) => {
+    const style = {
+      background: event.habitState ? "green" : "red",
+    };
     return { style };
-  }
+  };
 
   const handleSelectEvent = (event: any) => {
-    setEvents((prevEvents) => 
-    prevEvents.map((e) => e.id === event.id ?{...e, habitState: !e.habitState} : e))
-  }
+    setEvents((prevEvents) =>
+      prevEvents.map((e) =>
+        e.id === event.id ? { ...e, habitState: !e.habitState } : e
+      )
+    );
+  };
+
+  const CustomAgendaEvent = ({ event }) => (
+    <div style={{ cursor: "pointer" }}>
+      {event.title}{" "}
+      {event.habitState && <span style={{ color: "green" }}>✓</span>}
+    </div>
+  );
 
   return (
     <div className="p-4">
@@ -69,6 +78,7 @@ const stateStyle = (event: any) => {
         style={{ height: "90vh" }}
         eventPropGetter={stateStyle}
         onSelectEvent={handleSelectEvent}
+        components={{ agenda: { event: CustomAgendaEvent } }}
       />
     </div>
   );
