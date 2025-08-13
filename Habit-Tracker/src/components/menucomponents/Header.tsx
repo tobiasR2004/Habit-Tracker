@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
-import AltaModal from "../AltaHabitsM";
+
 
 
 interface HeaderProps {
