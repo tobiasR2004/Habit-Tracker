@@ -1,5 +1,6 @@
-import TimePicker from "./menucomponents/TimePicker";
+
 import { useState } from "react";
+import TimePickerModal from "./menucomponents/TimePickerModal";
 
 interface AltaModalProps {
   open: boolean;
@@ -66,13 +67,16 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                   />
                 </div>
                 <div className="relative">
-                  <button className="text-white flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
-                  onClick={() => {
-                    setOpenTimePicker(true);
-                  }}>
-                    Que dia tendras este habito?
+                  <button
+                    className="text-white flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={() => setOpenTimePicker(true)}>
+                    Qué día tendrás este hábito?
                   </button>
-                   {openTimePicker && <TimePicker onClose={() => setOpenTimePicker(false)} />}
+
+                  {openTimePicker && (
+                    <TimePickerModal onClose={() => setOpenTimePicker(false)} />
+                  )}
                 </div>
                 <div className="col-span-2">
                   <label
@@ -88,7 +92,6 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                     placeholder="Write Habit description here"
                   ></textarea>
                 </div>
-               
               </div>
               <button
                 type="submit"
