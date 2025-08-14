@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function InitComponent() {
     const navigate = useNavigate();
     const handleStart = () => {
-        navigate('/Menu');
+        navigate('/ManageHabits');
     }
     return(
     <section className="object-top-left mt-50 ml-32 w-xl ">

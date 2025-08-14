@@ -14,21 +14,7 @@ export default function Header({ onOpenModal }: HeaderProps) {
   let buttons;
   const btnClass = "border-1 text-white cursor-pointer font-bold py-2 px-8 rounded hover:bg-[#ffffff2e] hover:scale-110 origin-bottom-left transition-all duration-150";
 
-  if (path === "/Menu") {
-    buttons = (
-      <>
-        <button
-          className={btnClass}
-          onClick={() => {
-            navigate("/ManageHabits");
-          }}
-        >
-          Manage Habits
-        </button>
-
-      </>
-    );
-  } else if (path === "/ManageHabits") {
+  if (path === "/ManageHabits") {
     buttons = (
       <>
         <button
