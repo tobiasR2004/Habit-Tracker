@@ -8,6 +8,7 @@ import com.habit.Tracker.model.Usuario;
 import com.habit.Tracker.service.UsuarioService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/usuario")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 public class UsuarioController {
     private final UsuarioService usService;
 
@@ -26,7 +27,7 @@ public class UsuarioController {
     }
     
     @PostMapping
-    public Usuario createUs(Usuario us){
+    public Usuario createUs(@RequestBody Usuario us){
         return usService.guardarUsuario(us);
     }
     
