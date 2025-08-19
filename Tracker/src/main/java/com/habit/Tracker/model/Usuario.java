@@ -18,5 +18,40 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nombreUs, contraseña;
+
+    public Usuario(long id, String nombreUs, String contraseña) {
+        this.id = id;
+        this.nombreUs = nombreUs;
+        this.contraseña = contraseña;
+    }
+
+    public Usuario() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNombreUs() {
+        return nombreUs;
+    }
+
+    public void setNombreUs(String nombreUs) {
+        this.nombreUs = nombreUs;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
     
 }
