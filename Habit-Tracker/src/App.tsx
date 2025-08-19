@@ -1,5 +1,5 @@
 import React from 'react'
-import InitComponent from './components/InitComponent'
+import InitComponent from './components/LoginComponents/InitComponent'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import  ManageHabits  from './components/menucomponents/ManageHabits'
 import './App.css'; 
@@ -11,7 +11,7 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<InitComponent />} />
+        <Route path="/Menu" element={<InitComponent />} />
         <Route path="/ManageHabits" element={<ManageHabits />} />
       </Routes>
     </BrowserRouter>
