@@ -1,8 +1,41 @@
+import React from "react";
+import { useState } from "react";
+
 export default function Register() {
+    const [nombreUs, setNombreUs] = useState("");
+    const [contraseña, setContraseña] = useState("");
+
+    const handleRegister = async (e: React.FormEvent) =>{
+        e.preventDefault();
+
+        const userData = { nombreUs, contraseña }
+        try{
+            const res = await  fetch("http://localhost:8080/api/usuario", {
+                method: "POST",
+                headers: { 
+                    "content-type": "application/json"
+                 },
+                body: JSON.stringify(userData),
+        });
+        if (!res.ok){
+            throw new Error("Error al registrar el usuario");
+        }
+
+        const data = await res.json();
+        console.log("Usuario registrado:", data);
+        alert("Usuario registrado con exito");
+    } catch (error) {
+        console.error("Error al registrar el usuario:", error);
+        alert("Error al registrar el usuario");
+    }
+}
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex-col items-center py-10 rounded-2xl justify-center w-xl min-h-70vh bg-[#d5d5d572]">
-        <form className="max-w-md mx-auto">
+        <form className="max-w-md mx-auto" onSubmit={handleRegister}>
           <div className="w-full mx-auto">
             <label
               htmlFor="User"
@@ -15,6 +48,8 @@ export default function Register() {
               id="User"
               className="bg-gray-50 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600"
               placeholder=""
+              value= { nombreUs }
+              onChange= { (e) => setNombreUs(e.target.value) }
               required
             />
           </div>
@@ -29,10 +64,12 @@ export default function Register() {
               type="password"
               id="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 "
+              value={ contraseña }
+              onChange = { (e) => setContraseña(e.target.value) }
               required
             />
           </div>
-          <button className="flex border-1 m-auto text-gray-200 font-bold mt-5 py-2 px-10 rounded cursor-pointer hover:bg-[#2929296c] hover:scale-110  transition-all duration-150 ">
+          <button type="submit" className="flex border-1 m-auto text-gray-200 font-bold mt-5 py-2 px-10 rounded cursor-pointer hover:bg-[#2929296c] hover:scale-110  transition-all duration-150 ">
             Registrarse
           </button>
         </form>
