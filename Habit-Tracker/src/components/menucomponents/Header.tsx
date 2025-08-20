@@ -20,7 +20,7 @@ export default function Header({ onOpenModal }: HeaderProps) {
         <button
           className={btnClass}
           onClick={() => {
-            navigate("/Menu");
+            navigate("/");
           }}
         >
           Back

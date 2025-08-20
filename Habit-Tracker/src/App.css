@@ -3,6 +3,7 @@
 
 #root {
   max-width: 1280px;
+  min-height: 100vh;  /* fuerza que ocupe toda la altura de la ventana */
   margin: 0 auto;
 }
 
