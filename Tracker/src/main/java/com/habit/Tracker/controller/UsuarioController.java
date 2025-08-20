@@ -6,6 +6,7 @@ package com.habit.Tracker.controller;
 
 import com.habit.Tracker.model.Usuario;
 import com.habit.Tracker.service.UsuarioService;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,14 +44,14 @@ public class UsuarioController {
         return usService.guardarUsuario(us);
     }
 
-    @PostMapping("/Login")
+    @PostMapping("/login")
     public ResponseEntity<?> LoginUs(@RequestBody Usuario us) {
         Usuario user = usService.buscarUsNombre(us.getNombreUs());
         if (user != null && passEncoder.matches(us.getContraseña(), user.getContraseña())) {
             //login exitoso
-            return ResponseEntity.ok("Login Exitoso");
+            return ResponseEntity.ok(Map.of("mensaje","Login Exitoso"));
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o contraseña incorrectos");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("mensaje", "Usuario o contraseña incorrectos"));
         }
     }
 }

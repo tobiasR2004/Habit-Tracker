@@ -1,12 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
-  /*const data = [
-    {nombreUs: "Tobias", contraseña: "1234"}];*/
-  const handleStart = async () => {
+  const [contraseña, setContraseña] = useState("");
+  const [nombreUs, setNombreUs] = useState("");
+
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const loginData = { nombreUs, contraseña };
+    try {
+    const res = await fetch("http://localhost:8080/api/usuario/login",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(loginData)
+    });
+
+    if(!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.message || "Error al iniciar sesión");
+    }
+
+    const data = await res.json();
+    console.log("Usuario logueado:", data);
     navigate("/ManageHabits");
-  };
+  } catch (error: any) { 
+    console.error("Error al iniciar sesión:", error);
+    alert(error.message);
+  }
+}
   return (
     <div className="flex-col items-center py-10 rounded-2xl justify-center w-xl min-h-70vh bg-[#d5d5d572]">
       <form className="max-w-md mx-auto">
@@ -23,6 +49,8 @@ export default function Login() {
             className="bg-gray-50 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600"
             placeholder=""
             required
+            value={nombreUs}
+            onChange={(e) => setNombreUs(e.target.value)}
           />
         </div>
         <div className="w-full max-w-md mx-auto">
@@ -37,6 +65,8 @@ export default function Login() {
             id="password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 "
             required
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
           />
         </div>
         <div className="flex items-start mb-5">
@@ -59,7 +89,7 @@ export default function Login() {
         <button
           type="button"
           className="flex border-1 m-auto text-gray-200 font-bold py-2 px-10 rounded cursor-pointer hover:bg-[#2929296c] hover:scale-110  transition-all duration-150 "
-          onClick={handleStart}
+          onClick={handleLogin}
         >
           {" "}
           INICIAR{" "}
