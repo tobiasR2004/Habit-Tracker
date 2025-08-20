@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const navigate = useNavigate();
     const [nombreUs, setNombreUs] = useState("");
     const [contraseña, setContraseña] = useState("");
 
@@ -10,7 +12,7 @@ export default function Register() {
 
         const userData = { nombreUs, contraseña }
         try{
-            const res = await  fetch("http://localhost:8080/api/usuario", {
+            const res = await  fetch("http://localhost:8080/api/usuario/register", {
                 method: "POST",
                 headers: { 
                     "content-type": "application/json"
@@ -24,6 +26,7 @@ export default function Register() {
         const data = await res.json();
         console.log("Usuario registrado:", data);
         alert("Usuario registrado con exito");
+        navigate("/");
     } catch (error) {
         console.error("Error al registrar el usuario:", error);
         alert("Error al registrar el usuario");

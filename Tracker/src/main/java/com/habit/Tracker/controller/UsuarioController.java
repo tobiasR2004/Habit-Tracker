@@ -6,6 +6,11 @@ package com.habit.Tracker.controller;
 
 import com.habit.Tracker.model.Usuario;
 import com.habit.Tracker.service.UsuarioService;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,15 +25,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/usuario")
 @CrossOrigin(origins = "http://localhost:5173")
 public class UsuarioController {
+
     private final UsuarioService usService;
+
+    @Autowired
+    private PasswordEncoder passEncoder;
 
     public UsuarioController(UsuarioService usService) {
         this.usService = usService;
     }
-    
-    @PostMapping
-    public Usuario createUs(@RequestBody Usuario us){
+
+    @PostMapping("/register")
+    public Usuario createUs(@RequestBody Usuario us) {
+        //Encriptamos la contraseña
+        String password = passEncoder.encode(us.getContraseña());
+        us.setContraseña(password);
         return usService.guardarUsuario(us);
     }
-    
+
+    @PostMapping("/Login")
+    public ResponseEntity<?> LoginUs(@RequestBody Usuario us) {
+        Usuario user = usService.buscarUsNombre(us.getNombreUs());
+        if (user != null && passEncoder.matches(us.getContraseña(), user.getContraseña())) {
+            //login exitoso
+            return ResponseEntity.ok("Login Exitoso");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o contraseña incorrectos");
+        }
+    }
 }

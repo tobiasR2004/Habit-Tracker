@@ -5,24 +5,6 @@ export default function Login() {
   /*const data = [
     {nombreUs: "Tobias", contraseña: "1234"}];*/
   const handleStart = async () => {
-    /*try {
-            for (const Usuario of data){
-                const res = await fetch("http://localhost:8080/api/usuario", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(Usuario)
-                });
-                if (res.ok) {
-                    navigate('/ManageHabits');
-                } else {
-                    console.error("Error al iniciar sesión");
-                }
-            }
-        } catch (error) {
-            console.error("Error al iniciar sesión:", error);
-        }*/
     navigate("/ManageHabits");
   };
   return (

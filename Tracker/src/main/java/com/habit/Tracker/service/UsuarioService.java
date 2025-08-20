@@ -24,4 +24,8 @@ public class UsuarioService {
     public Usuario guardarUsuario(Usuario usuario){
         return usuarioRep.save(usuario);
     }
+    
+    public Usuario buscarUsNombre(String user){
+        return usuarioRep.findByNombreUs(user);
+    }
 }
