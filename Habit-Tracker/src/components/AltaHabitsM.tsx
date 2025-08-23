@@ -1,12 +1,17 @@
 import { useState } from "react";
-import TimePickerModal from "./menucomponents/TimePickerModal";
 
 interface AltaModalProps {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
+
 export default function AltaModal({ open, setOpen }: AltaModalProps) {
-  const [openTimePicker, setOpenTimePicker] = useState(false);
+  const hoursOfDay = [];
+
+  for (let i = 0; i < 24; i++) {
+    hoursOfDay.push(i.toString().padStart(2, "0") + ":00");
+    hoursOfDay.push(i.toString().padStart(2, "0") + ":30");
+  }
   return (
     <div
       className={`${
@@ -19,7 +24,7 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
         aria-hidden="true"
         className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
-        <div className="flex m-auto p-4 w-full max-w-md max-h-full">
+        <div className="flex gap-4 m-auto p-4 w-full max-w-md max-h-full">
           <div className=" bg-white rounded-lg shadow-sm dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -49,7 +54,7 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
-            <form className="p-10 md:p-5">
+            <form className="flex flex-col gap-4 p-4 md:p-5">
               <div className="flex flex-col gap-4 mb-4">
                 <div className="col-span-2">
                   <label
@@ -67,23 +72,20 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-              <button
-                className="text-white items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="button"
-                onClick={() => setOpenTimePicker(true)}
-              >
-                Seleccionar fecha y hora
-              </button>
-              {openTimePicker && (
-                <TimePickerModal onClose={() => setOpenTimePicker(false)} />
-              )}
+                <select className="block py-2.5 px-0 w-full text-sm caret-transparent text-gray-100 bg-transparent border-0 border-b-2 border-gray-200 appearance-none text-white focus:text-gray-800">
+                  <option>Seleccionar hora ▲</option>
+                  {hoursOfDay.map((time) => (
+                    <option key={time}>{time}</option>
+                  ))}
+                </select>
+              </div>
 
               <button
                 type="submit"
-                className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="text-white inline-flex items-center cursor-pointer bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 <svg
-                  className="me-1 -ms-1 w-5 h-5"
+                  className="me-1 text-center -ms-1 w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +98,6 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                 </svg>
                 Agregar nuevo hábito
               </button>
-              </div>
             </form>
           </div>
         </div>

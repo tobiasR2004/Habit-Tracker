@@ -7,6 +7,11 @@
   margin: 0 auto;
 }
 
+h1, h2, h3, h4, h5, h6,
+label, button, p, span {
+  caret-color: transparent; /* oculta la barrita */
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
