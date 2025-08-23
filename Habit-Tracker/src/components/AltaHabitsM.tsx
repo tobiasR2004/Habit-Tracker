@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface AltaModalProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -72,7 +70,7 @@ export default function AltaModal({ open, setOpen }: AltaModalProps) {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <select className="block py-2.5 px-0 w-full text-sm caret-transparent text-gray-100 bg-transparent border-0 border-b-2 border-gray-200 appearance-none text-white focus:text-gray-800">
+                <select className="block py-2.5 px-0 w-full text-sm caret-transparent text-gray-100 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:text-gray-800">
                   <option>Seleccionar hora ▲</option>
                   {hoursOfDay.map((time) => (
                     <option key={time}>{time}</option>
